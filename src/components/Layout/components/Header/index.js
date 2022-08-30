@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
 import { Wrapper as PopperWrapper } from '~/components/Poper';
@@ -15,7 +15,9 @@ function Header() {
     const [searchResult, setSearchResult] = useState([]);
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([/** API call */]);
+            setSearchResult([
+                /** API call */
+            ]);
         }, 0);
     });
     return (
@@ -50,9 +52,14 @@ function Header() {
                     </div>
                 </Tippy>
                 <div className={cx('action')}>
-                <Button primary href="https://xoilac3.com/" target="_blank">
-                Login
-                </Button>
+                    <Button text>Upload</Button>
+                    <Button
+                        primary
+                        leftIcon={<FontAwesomeIcon icon={faSignIn} />}
+                        rightIcon={<FontAwesomeIcon icon={faSignIn} />}
+                    >
+                        Login
+                    </Button>
                 </div>
             </div>
         </header>
