@@ -77,6 +77,9 @@
 }
 
 .search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: var(--search-button-width);
     height: 100%;
     border-top-right-radius: var(--search-border-radius);
@@ -108,10 +111,12 @@
 }
 
 .action-btn {
+    display: flex;
+    align-items: center;
     font-size: 2.2rem;
     color: #161623;
     background-color: transparent;
-    padding: 4px 12px;
+    padding: 4px 10px;
     cursor: pointer;
 }
 .user-avatar {
