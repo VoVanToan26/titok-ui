@@ -24,6 +24,46 @@ const MENUITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'Einglish',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng việt',
+                },
+                {
+                    type: 'language',
+                    code: 'ja',
+                    title: 'Japanese',
+                    children: {
+                        title: 'Language',
+                        data: [
+                            {
+                                type: 'language',
+                                code: 'en',
+                                title: 'English2',
+                            },
+                            {
+                                type: 'language',
+                                code: 'vi',
+                                title: 'Tiếng việt2',
+                            },
+                            {
+                                type: 'language',
+                                code: 'ja',
+                                title: 'Japanese2',
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -33,7 +73,7 @@ const MENUITEMS = [
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
         title: 'Keyboard shortcuts',
-    }
+    },
 ];
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
@@ -44,6 +84,10 @@ function Header() {
             ]);
         }, 0);
     });
+
+    const hanleMenuChange = (menuItem) => {
+        console.log(menuItem);
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -84,7 +128,7 @@ function Header() {
                     >
                         Login
                     </Button>
-                    <Menu items={MENUITEMS}>
+                    <Menu items={MENUITEMS} onChange={hanleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
