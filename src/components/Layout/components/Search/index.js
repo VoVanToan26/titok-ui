@@ -5,6 +5,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
 
+import * as seachSevices from '~/apiServices/searchServices';
 import AccountItem from '~/components/AcountItem';
 import { SearchIcon } from '~/components/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Poper';
@@ -17,8 +18,8 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
-// Khi nguowif dung ngung go 500ms thi useDounce moi cahy
-    const debounced = useDebounce(searchValue,500);
+    // Khi nguowif dung ngung go 500ms thi useDounce moi cahy
+    const debounced = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
     // Mỗi khi người dùng gõ --> search value đổi --> useEffet
@@ -28,18 +29,15 @@ function Search() {
             return;
         }
         //Api call begin
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                //Api call end
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            const result = await seachSevices.search(debounced);
+            
+            setSearchResult(result);
+            setLoading(false);
+        };
+        fetchApi();
     }, [debounced]);
     const handleClear = () => {
         setSearchValue('');
