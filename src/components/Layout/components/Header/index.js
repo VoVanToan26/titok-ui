@@ -1,17 +1,21 @@
 import {
-    faCircleQuestion, faCoins,
+    faCircleQuestion,
+    faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
     faSignIn,
-    faSignOut, faUser
+    faSignOut,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 
+import routesConfig from '~/config/routes';
 import images from '~/assets/images';
 import Button from '~/components/Button';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
@@ -78,8 +82,6 @@ const MENU_ITEMS = [
 const currentUser = true;
 
 function Header() {
-
-
     const hanleMenuChange = (menuItem) => {
         console.log(menuItem);
     };
@@ -111,9 +113,11 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="Tiktok logo" />
+                <Link to={routesConfig.home} className={cx('logo-link')}>
+                    <img src={images.logo} alt="Tiktok logo" />
+                </Link>
 
-            <Search/>
+                <Search />
 
                 <div className={cx('action')}>
                     {currentUser ? (
