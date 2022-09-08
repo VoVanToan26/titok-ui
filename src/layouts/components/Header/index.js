@@ -118,7 +118,6 @@ function Header() {
                 </Link>
 
                 <Search />
-
                 <div className={cx('action')}>
                     {currentUser ? (
                         <>
