@@ -19,12 +19,12 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
     // Khi nguowif dung ngung go 500ms thi useDounce moi cahy
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
     // Mỗi khi người dùng gõ --> search value đổi --> useEffet
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
@@ -32,13 +32,13 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
 
-            const result = await seachSevices.search(debounced);
+            const result = await seachSevices.search(debouncedValue);
 
             setSearchResult(result);
             setLoading(false);
         };
         fetchApi();
-    }, [debounced]);
+    }, [debouncedValue]);
     const handleClear = () => {
         setSearchValue('');
         setSearchResult([]);
